@@ -8,44 +8,40 @@ import java.util.Arrays;
 public class Day1Part2 {
     public static void main(String[] args) {
 
-        File archivo = null;
+        File file = null;
         FileReader fr = null;
         BufferedReader br = null;
 
         try {
-            // Apertura del fichero y creacion de BufferedReader para poder
-            // hacer una lectura comoda (disponer del metodo readLine()).
-            archivo = new File ("C:\\Users\\xesa\\OneDrive\\Escritorio\\Adviento\\dia1.txt");
-            fr = new FileReader (archivo);
+
+            file = new File ("inputData/dia1.txt");
+            fr = new FileReader (file);
             br = new BufferedReader(fr);
 
-            // Lectura del fichero
-            String linea;
-            int acumuladorCalorias=0;
-            int [] acumulacionGrande =  new int[3];
-            while((linea=br.readLine())!=null) {
-                System.out.println(linea);
-                if (!linea.equals("")) {
-                    acumuladorCalorias = acumuladorCalorias + Integer.parseInt(linea);
+            String line;
+            int accumulatedElfCalories=0;
+            int [] fattestThreeElf =  new int[3];
+            while((line=br.readLine())!=null) {
+                System.out.println(line);
+                if (!line.equals("")) {
+                    accumulatedElfCalories = accumulatedElfCalories + Integer.parseInt(line);
                 } else {
-                    if (acumulacionGrande[0] < acumuladorCalorias) {
-                        acumulacionGrande[0] = acumuladorCalorias;
-                        Arrays.sort(acumulacionGrande);
-
+                    if (fattestThreeElf[0] < accumulatedElfCalories) {
+                        fattestThreeElf[0] = accumulatedElfCalories;
+                        Arrays.sort(fattestThreeElf);
                     }
-                    acumuladorCalorias = 0;
+                    accumulatedElfCalories = 0;
                 }
             }
-            for(int i = 0; i< acumulacionGrande.length ; i++) {
-                System.out.println("---"+ acumulacionGrande[i]);
+            for(int i = 0; i< fattestThreeElf.length ; i++) {
+                System.out.println("---"+ fattestThreeElf[i]);
             }
-            int sum= Arrays.stream(acumulacionGrande).sum();
+            int sum= Arrays.stream(fattestThreeElf).sum();
             System.out.println(sum);
         }
         catch(Exception e){
             e.printStackTrace();
         }finally{
-            // En el finally cerramos el fichero, para asegurarnos
 
             try{
                 if( null != fr ){

@@ -7,38 +7,35 @@ import java.io.FileReader;
 public class Day1Part1 {
     public static void main(String[] args) {
 
-        File archivo = null;
+        File file = null;
         FileReader fr = null;
         BufferedReader br = null;
 
         try {
-            // Apertura del fichero y creacion de BufferedReader para poder
-            // hacer una lectura comoda (disponer del metodo readLine()).
-            archivo = new File ("C:\\Users\\xesa\\OneDrive\\Escritorio\\Adviento\\dia1.txt");
-            fr = new FileReader (archivo);
+
+            file = new File ("inputData/dia1.txt");
+            fr = new FileReader (file);
             br = new BufferedReader(fr);
 
-            // Lectura del fichero
-            String linea;
-            int acumuladorCalorias=0;
-            int acumulacionGrande=0;
-            while((linea=br.readLine())!=null) {
-                System.out.println(linea);
-                if (!linea.equals("")) {
-                    acumuladorCalorias = acumuladorCalorias + Integer.parseInt(linea);
+            String line;
+            int accumulatedOfElfCalories=0;
+            int theBiggestCalories=0;
+            while((line=br.readLine())!=null) {
+                System.out.println(line);
+                if (!line.equals("")) {
+                    accumulatedOfElfCalories = accumulatedOfElfCalories + Integer.parseInt(line);
                 } else {
-                    if (acumulacionGrande < acumuladorCalorias) {
-                        acumulacionGrande = acumuladorCalorias;
+                    if (theBiggestCalories < accumulatedOfElfCalories) {
+                        theBiggestCalories = accumulatedOfElfCalories;
                     }
-                    acumuladorCalorias = 0;
+                    accumulatedOfElfCalories = 0;
                 }
             }
-            System.out.println(acumulacionGrande);
+            System.out.println(theBiggestCalories);
         }
         catch(Exception e){
             e.printStackTrace();
         }finally{
-            // En el finally cerramos el fichero, para asegurarnos
 
             try{
                 if( null != fr ){
